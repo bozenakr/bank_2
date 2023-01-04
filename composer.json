@@ -1,9 +1,9 @@
 {
-    "name": "bozen/front",
+    "name": "bozen/bank_2",
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Bank_2\\": "app/",
+            "Bank2\\": "app/",
             "App\\DB\\": "app/"
         }
     },

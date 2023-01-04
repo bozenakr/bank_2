@@ -1,7 +1,11 @@
 <?php
 
-use Bank_2\App;
+use Bank2\App;
+
+define('URL', 'http://bank.lt/');
 
 require __DIR__ . '/../vendor/autoload.php';
 
-App::start();
+$response = App::start();
+
+echo $response;

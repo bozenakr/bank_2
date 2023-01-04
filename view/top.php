@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Calculator sum/diff... -->
     <title><?= $pageTitle ?? 'Untitled Page' ?></title>
+    <!-- mano URL is index.php -->
     <script src="<?= URL . 'app.js' ?>"></script>
     <link rel="stylesheet" href="<?= URL . 'app.css' ?>">
 </head>

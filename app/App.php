@@ -1,8 +1,7 @@
 <?php
 namespace Bank2;
 
-use Bank2\Controllers\Calculator;
-use Bank2\Controllers\Grybas;
+use Bank2\Controllers\Client;
 // use Bank2\Controllers\Api;
 
 class App {
@@ -19,34 +18,29 @@ class App {
     private static function router(array $url)
     {
         $method = $_SERVER['REQUEST_METHOD'];
-        
-        if ($url[0] == 'calculator' && in_array($url[1], ['sum', 'diff', 'mult', 'div']) && count($url) == 4) {
-            //{$url[1]} - cia is objekto darau stringa, be sito meta klaida array to string conversion
-            return (new Calculator)->{$url[1]}($url[2], $url[3]);
+
+        if ($url[0] == 'clients' && count($url) == 1 && $method == 'GET') {
+            return (new Client)->index();
         }
 
-        if ($url[0] == 'grybai' && count($url) == 1 && $method == 'GET') {
-            return (new Grybas)->index();
+        if ($url[0] == 'clients' && $url[1] == 'create' && count($url) == 2 && $method == 'GET') {
+            return (new Client)->create();
         }
 
-        if ($url[0] == 'grybai' && $url[1] == 'create' && count($url) == 2 && $method == 'GET') {
-            return (new Grybas)->create();
+        if ($url[0] == 'clients' && $url[1] == 'save' && count($url) == 2 && $method == 'POST') {
+            return (new Client)->save();
         }
 
-        if ($url[0] == 'grybai' && $url[1] == 'save' && count($url) == 2 && $method == 'POST') {
-            return (new Grybas)->save();
+        if ($url[0] == 'clients' && $url[1] == 'edit' && count($url) == 3 && $method == 'GET') {
+            return (new Client)->edit($url[2]);
         }
 
-        if ($url[0] == 'grybai' && $url[1] == 'edit' && count($url) == 3 && $method == 'GET') {
-            return (new Grybas)->edit($url[2]);
+        if ($url[0] == 'clients' && $url[1] == 'update' && count($url) == 3 && $method == 'POST') {
+            return (new Client)->update($url[2]);
         }
 
-        if ($url[0] == 'grybai' && $url[1] == 'update' && count($url) == 3 && $method == 'POST') {
-            return (new Grybas)->update($url[2]);
-        }
-
-        if ($url[0] == 'grybai' && $url[1] == 'delete' && count($url) == 3 && $method == 'POST') {
-            return (new Grybas)->delete($url[2]);
+        if ($url[0] == 'clients' && $url[1] == 'delete' && count($url) == 3 && $method == 'POST') {
+            return (new Client)->delete($url[2]);
         }
 
         if ($url[0] == 'users' && $url[1] == 'all' && count($url) == 2 && $method == 'GET') {
@@ -72,7 +66,7 @@ class App {
 
         require __DIR__ .'/../view/top.php';
         
-        //paleidziam faila $name - pvz calculator
+        //paleidziam faila $name - pvz client
         require __DIR__ .'/../view/'.$__name.'.php';
 
         require __DIR__ .'/../view/bottom.php';
@@ -87,14 +81,10 @@ class App {
         return $out;
     }
 
-    //naudoju Grybas.php kontroleryje
+    //naudoju Client.php kontroleryje
     public static function redirect($url)
     {
         header('Location: ' . URL . $url);
         return null;
     }
-
-
-
-
 }

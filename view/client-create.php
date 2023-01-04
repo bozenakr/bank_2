@@ -1,6 +1,6 @@
-<h1>Naujas Grybas</h1>
+<h1>New client</h1>
 
-<form action="<?= URL ?>grybai/save" method="post">
+<form action="<?= URL ?>clients/save" method="post">
 
     <div>Pavadinimas<input type="text" name="title"></div>
     <div>Spalva<input type="text" name="color"></div>

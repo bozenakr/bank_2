@@ -1,0 +1,17 @@
+{
+    "name": "bozen/front",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Bank_2\\": "app/",
+            "App\\DB\\": "app/"
+        }
+    },
+    "authors": [
+        {
+            "name": "bozenakr",
+            "email": "bozena.krasevic@gmail.com"
+        }
+    ],
+    "require": {}
+}

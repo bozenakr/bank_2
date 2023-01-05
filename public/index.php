@@ -2,7 +2,7 @@
 
 use Bank2\App;
 
-define('URL', 'http://bank.lt/');
+define('URL', 'http://bank2.lt/');
 
 require __DIR__ . '/../vendor/autoload.php';
 

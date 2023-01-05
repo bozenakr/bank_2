@@ -14,7 +14,7 @@ class App {
         return self::router($url);
         
     }
-
+    //cia kreipiuos i kontrolerius
     private static function router(array $url)
     {
         $method = $_SERVER['REQUEST_METHOD'];
@@ -51,7 +51,7 @@ class App {
             return (new Api)->jsUsers();
         }
 
-        return '404 NOT FOUND';
+        return 'pagrindinis psl login';
     }
 
     //view metodas paima kintamuosius ir sumeta i template (failai view folderyje) - top, bottom.. viskas yra atskirta (cia headerio menu pvz)

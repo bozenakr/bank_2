@@ -3,6 +3,7 @@ namespace Bank2\Controllers;
 use Bank2\App;
 use Bank2\DB\FileReader as FR;
 
+//!!!!!!!!kur koki puslapi rodyt client-edit client-create
 class Client {
     
     public function index()
@@ -11,7 +12,7 @@ class Client {
         //view tai vieta kur html ir duomenys sueina i viena ir renderinasi i vaizda
         $clients = (new FR('clients'))->showAll();
         $pageTitle = 'Clients | List';
-        return App::view('Client-list', compact('clients', 'pageTitle'));
+        return App::view('client-list', compact('clients', 'pageTitle'));
     }
     public function create()
     {

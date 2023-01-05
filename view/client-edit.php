@@ -2,10 +2,14 @@
 
 <form action="<?= URL ?>clients/update/<?= $client['id'] ?>" method="post">
 
-    <div>Pavadinimas<input type="text" name="title" value="<?= $client['title'] ?>"></div>
-    <div>Spalva<input type="text" name="color" value="<?= $client['color'] ?>"></div>
-    <div>Svoris<input type="text" name="weight" value="<?= $client['weight'] ?>"></div>
+    <div>Name <?= $client['name'] ?></div>
+    <div>Surname <?= $client['surname'] ?></div>
+    <div>Balance <?= $client['balance'] ?></div>
 
-    <button type="submit">Taip</button>
+    <div>Amount<input type="text" name="newDeposit"></div>
+    <button type="submit">Deposit</button>
+
+    <div>Amount<input type="text" name="newWithdraw"></div>
+    <button type="submit">Withdraw</button>
 
 </form>

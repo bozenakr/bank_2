@@ -42,16 +42,20 @@ class FileReader implements DataBase {
         }
     }
 
+
     public function create(array $userData) : void
     {
+        $userData['iban'] = 'LT' . rand(40,60) . 35000 . rand(10000000000,99999999999);
         $userData['id'] = $this->getId();
+        $userData['balance'] = 0;
         $this->data[] = $userData;
     }
-
+    //$userData tai vienas grybo masyvas (tas kuri norim redaguot) viduje didelio masyvo is grybu
     public function update(int $userId, array $userData) : void
     {
         $userData['id'] = $userId;
         //einam per visa array, susiranda vieta kur user id sutampa su id ir ta vieta overwrite, kitus perkeliam kaip buvo
+        //$thisdata tai visi grybai - didelis masyvas
         $this->data = array_map(fn($data) => $userId == $data['id'] ? $userData : $data, $this->data);
     }
 

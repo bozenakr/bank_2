@@ -1,1 +1,1 @@
-a:1:{i:1;a:6:{s:4:"name";s:3:"Ona";s:7:"surname";s:6:"Onaite";s:11:"personal_id";s:11:"48601211895";s:4:"iban";s:20:"LT463500036730962314";s:7:"balance";i:0;s:2:"id";i:26;}}
+a:2:{i:0;a:6:{s:4:"name";s:7:"Briedis";s:7:"surname";s:10:"Briedienis";s:11:"personal_id";s:11:"39501211694";s:4:"iban";s:20:"LT423500090738385798";s:2:"id";i:35;s:7:"balance";i:0;}i:1;a:6:{s:4:"name";s:6:"Bebras";s:7:"surname";s:9:"Bebraitis";s:11:"personal_id";s:11:"48512215684";s:4:"iban";s:20:"LT403500039895487742";s:2:"id";i:36;s:7:"balance";i:0;}}

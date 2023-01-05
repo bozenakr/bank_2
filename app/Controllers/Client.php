@@ -11,7 +11,7 @@ class Client {
         //clients tai failas i kuri irasines
         //view tai vieta kur html ir duomenys sueina i viena ir renderinasi i vaizda
         $clients = (new FR('clients'))->showAll();
-        $pageTitle = 'Clients | List';
+        $pageTitle = 'Client | List';
         return App::view('client-list', compact('clients', 'pageTitle'));
     }
     public function create()
@@ -30,11 +30,19 @@ class Client {
         return App::redirect('clients');
     }
 
-    public function edit($id)
+    public function deposit($id)
     {
-        $pageTitle = 'Account | Edit';
+        $pageTitle = 'Account | Deposit';
         $client = (new FR('clients'))->show($id);
-        return App::view('client-edit', compact('pageTitle', 'client'));
+        return App::view('client-deposit', compact('pageTitle', 'client'));
+    }
+
+    
+    public function withdraw($id)
+    {
+        $pageTitle = 'Account | Withdraw';
+        $client = (new FR('clients'))->show($id);
+        return App::view('client-withdraw', compact('pageTitle', 'client'));
     }
 
     public function update($id)

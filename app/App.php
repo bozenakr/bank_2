@@ -31,8 +31,12 @@ class App {
             return (new Client)->save();
         }
 
-        if ($url[0] == 'clients' && $url[1] == 'edit' && count($url) == 3 && $method == 'GET') {
-            return (new Client)->edit($url[2]);
+        if ($url[0] == 'clients' && $url[1] == 'deposit' && count($url) == 3 && $method == 'GET') {
+            return (new Client)->deposit($url[2]);
+        }
+
+        if ($url[0] == 'clients' && $url[1] == 'withdraw' && count($url) == 3 && $method == 'GET') {
+            return (new Client)->withdraw($url[2]);
         }
 
         if ($url[0] == 'clients' && $url[1] == 'update' && count($url) == 3 && $method == 'POST') {
@@ -64,12 +68,12 @@ class App {
         //is array su elementais su savybem padaro kintamuosius
         extract($data);
 
-        require __DIR__ .'/../view/top.php';
+        require __DIR__ .'/../view/header.php';
         
         //paleidziam faila $name - pvz client
         require __DIR__ .'/../view/'.$__name.'.php';
 
-        require __DIR__ .'/../view/bottom.php';
+        require __DIR__ .'/../view/footer.php';
 
         //nuskaitymas is buferio i kintamaji (viskas nebuvo isechointa, o pasiliko buferyje)
         $out = ob_get_contents();

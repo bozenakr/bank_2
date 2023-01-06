@@ -1,7 +1,3 @@
-<?php
-
-?>
-
 <div class="container">
     <div>
         <h2 class="main-title">Create new account</h2>
@@ -30,4 +26,27 @@
             </div>
         </form>
     </div>
+</div>
+
+<!-- ERROR -->
+<div class="new">
+    <?php if (isset($errorVardasPavarde)) : ?>
+    <div class="alert alert-danger" role="alert">
+        <?= $errorVardasPavarde ?>
+    </div>
+    <?php endif ?>
+</div>
+<div class="new">
+    <?php if (isset($errorPersonal_ID)) : ?>
+    <div class="alert alert-danger" role="alert">
+        <?= $errorPersonal_ID ?>
+    </div>
+    <?php endif ?>
+</div>
+<div class="new">
+    <?php if (isset($errorPersonal_ID2)) : ?>
+    <div class="alert alert-danger" role="alert">
+        <?= $errorPersonalID2 ?>
+    </div>
+    <?php endif ?>
 </div>

@@ -20,14 +20,24 @@ class Client {
         return App::view('client-create', compact('pageTitle'));
     }
     
+    public function save()
     //save funkcija perduos duomenis per body(post array)
     //is Filereader imu create perduodu i masyva ir jis is posto ir bus tas masyvas
     //issaugom tai ka turim post array ir pereinam su tuo i sarasa
-    public function save()
+    //cia validacija ir compact-error
     {
-        (new FR('clients'))->create($_POST);
-        //negrazinam vaizda o pereinam i kita psl (pagrindini) kuriu nauja funkcija redirect App.php
-        return App::redirect('clients');
+        if (strlen($_POST['name']) < 4 || strlen($_POST['surname']) < 4 || !preg_match('/^[\p{Latin}]+$/u', $_POST['name']) || !preg_match('/^[\p{Latin}]+$/u', $_POST['surname'])) {
+            $errorVardasPavarde = 'Vardas ir pavardė turi būti ilgesni nei 3 simboliai ir turėti tik raides';
+            return App::view('client-create', compact('errorVardasPavarde'));
+            }
+        if ((strlen($_POST['personal_id']) != 11) || !is_numeric($_POST['personal_id']) || (((int)(substr($_POST['personal_id'], 5, 2)) > 31) || ((int)(substr($_POST['personal_id'], 3, 2)) > 12))) {
+            $errorPersonal_ID = 'Toks asmens kodas neegzistuoja';
+                return App::view('client-create', compact('errorPersonal_ID'));
+        }
+        else {
+                (new FR('clients'))->create($_POST);
+                    return App::redirect('clients');
+        }
     }
 
     public function deposit($id)
@@ -50,9 +60,16 @@ class Client {
         (new FR('clients'))->update($id, $_POST);
         return App::redirect('clients');
     }
+    
+    public function update2($id)
+    {
+        (new FR('clients'))->update2($id, $_POST);
+        return App::redirect('clients');
+    }
 
     public function delete($id)
     {
+        // if($id =)
         (new FR('clients'))->delete($id);
         return App::redirect('clients');
     }

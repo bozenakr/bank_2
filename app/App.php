@@ -30,7 +30,7 @@ class App {
         if ($url[0] == 'clients' && $url[1] == 'save' && count($url) == 2 && $method == 'POST') {
             return (new Client)->save();
         }
-
+        //jei url deposit meta i psl client-deposit
         if ($url[0] == 'clients' && $url[1] == 'deposit' && count($url) == 3 && $method == 'GET') {
             return (new Client)->deposit($url[2]);
         }
@@ -41,6 +41,10 @@ class App {
 
         if ($url[0] == 'clients' && $url[1] == 'update' && count($url) == 3 && $method == 'POST') {
             return (new Client)->update($url[2]);
+        }
+        
+          if ($url[0] == 'clients' && $url[1] == 'update2' && count($url) == 3 && $method == 'POST') {
+            return (new Client)->update2($url[2]);
         }
 
         if ($url[0] == 'clients' && $url[1] == 'delete' && count($url) == 3 && $method == 'POST') {

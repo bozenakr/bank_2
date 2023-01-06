@@ -72,10 +72,15 @@ class FileReader implements DataBase {
         }
     }
 
+    //einu per visus duomenis ir jei user id sutampa tai yra false, jei yra false neperkeliam i array, ismetam
+    //????????patikrint!!!!
     public function delete(int $userId) : void
-    {
-        //einu per visus duomenis ir jei user id sutampa tai yra false, jei yra false neperkeliam i array, ismetam
+    { if ($userData['balance'] == 0.00) {
         $this->data = array_filter($this->data, fn($data) => $userId != $data['id']);
+    } else {
+        $userData['id'] = $userId;
+        $this->data = array_map(fn($data) => $userId == $data['id'] ? $userData : $data, $this->data);
+    }
     }
     
     public function show(int $userId) : array

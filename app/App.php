@@ -30,7 +30,7 @@ class App {
         if ($url[0] == 'clients' && $url[1] == 'save' && count($url) == 2 && $method == 'POST') {
             return (new Client)->save();
         }
-        //jei url deposit meta i psl client-deposit
+        // jei url deposit meta i psl client-deposit
         if ($url[0] == 'clients' && $url[1] == 'deposit' && count($url) == 3 && $method == 'GET') {
             return (new Client)->deposit($url[2]);
         }
@@ -38,7 +38,7 @@ class App {
         if ($url[0] == 'clients' && $url[1] == 'withdraw' && count($url) == 3 && $method == 'GET') {
             return (new Client)->withdraw($url[2]);
         }
-
+        //update su post padaro deposit veiksma
         if ($url[0] == 'clients' && $url[1] == 'update' && count($url) == 3 && $method == 'POST') {
             return (new Client)->update($url[2]);
         }

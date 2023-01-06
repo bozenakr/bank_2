@@ -35,8 +35,8 @@ class Client {
                 return App::view('client-create', compact('errorPersonal_ID'));
         }
         else {
-                (new FR('clients'))->create($_POST);
-                    return App::redirect('clients');
+            (new FR('clients'))->create($_POST);
+                return App::redirect('clients');
         }
     }
 
@@ -55,23 +55,43 @@ class Client {
         return App::view('client-withdraw', compact('pageTitle', 'client'));
     }
 
+    //deposit validacija
     public function update($id)
     {
-        (new FR('clients'))->update($id, $_POST);
-        return App::redirect('clients');
+        if ((float) $_POST['naujaSuma'] > 0 && is_numeric($_POST['naujaSuma'])) {
+            (new FR('clients'))->update($id, $_POST);
+            return App::redirect('clients');
+        } else {
+            $pageTitle = 'Account | Deposit';
+            (new FR('clients'))->update($id, $_POST);
+            return App::redirect('clients/deposit' . '/' . $id);
+        }
     }
     
+    //withdraw validacija
     public function update2($id)
     {
-        (new FR('clients'))->update2($id, $_POST);
-        return App::redirect('clients');
+        if ((float) $_POST['naujaSuma'] > 0 && is_numeric($_POST['naujaSuma'])) {
+            (new FR('clients'))->update2($id, $_POST);
+            return App::redirect('clients');
+        } else {
+            $pageTitle = 'Account | Deposit';
+            (new FR('clients'))->update($id, $_POST);
+            return App::redirect('clients/withdraw' . '/' . $id);
+        }
     }
 
+    // ???????patikrint!!!!
     public function delete($id)
-    {
-        // if($id =)
+    { if ($userData['balance'] == 0.00) {
         (new FR('clients'))->delete($id);
         return App::redirect('clients');
+    } else {
+        $pageTitle = 'Client | List';
+                $client = (new FR('clients'))->show($id);
+        return App::view('client-list', compact('clients', 'pageTitle'));
+    }
+
     }
 
 }

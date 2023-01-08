@@ -8,7 +8,7 @@
             </div>
         </div>
         <div class="form">
-            <form action="<?= URL ?>clients/update/<?= $client['id'] ?>" method="post">
+            <form action="<?= URL ?>clients/update/<?= $client['id'] ?>/deposit" method="post">
                 <input class="input" type="text" name="naujaSuma">
                 <button class="btn btn-margin" type="submit">Deposit</button>
         </div>

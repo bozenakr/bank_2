@@ -24,5 +24,14 @@
 
     </div>
 </div>
+<?php if (isset($success)) : ?>
+<div class="container">
+    <div class="hide" style="with: 100%">
+        <div class="alert alert-success text-center" role="alert">
+            <?= $success ?>
+        </div>
+    </div>
+    <?php endif ?>
+</div>
 
 </html>

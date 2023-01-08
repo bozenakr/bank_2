@@ -14,39 +14,46 @@ class App {
         return self::router($url);
         
     }
+    
     //cia kreipiuos i kontrolerius
     private static function router(array $url)
     {
         $method = $_SERVER['REQUEST_METHOD'];
 
+        //bank2.lt/clients
         if ($url[0] == 'clients' && count($url) == 1 && $method == 'GET') {
             return (new Client)->index();
         }
 
+        //bank2.lt/clients/create
         if ($url[0] == 'clients' && $url[1] == 'create' && count($url) == 2 && $method == 'GET') {
             return (new Client)->create();
         }
 
+        //bank2.lt/clients/(save) POST!! 
         if ($url[0] == 'clients' && $url[1] == 'save' && count($url) == 2 && $method == 'POST') {
             return (new Client)->save();
         }
+        
         // jei url deposit meta i psl client-deposit
+        //bank2.lt/clients/deposit
         if ($url[0] == 'clients' && $url[1] == 'deposit' && count($url) == 3 && $method == 'GET') {
             return (new Client)->deposit($url[2]);
         }
 
+        //bank2.lt/clients/withdraw
         if ($url[0] == 'clients' && $url[1] == 'withdraw' && count($url) == 3 && $method == 'GET') {
             return (new Client)->withdraw($url[2]);
         }
-        //update su post padaro deposit veiksma
-        if ($url[0] == 'clients' && $url[1] == 'update' && count($url) == 3 && $method == 'POST') {
-            return (new Client)->update($url[2]);
+
+        //is Client.php imu update function
+        //update su post padaro deposit/withdraw veiksma
+        //bank2.lt/clients/update/42/deposit
+        //bank2.lt/clients/update/42/withdraw
+        if ($url[0] == 'clients' && $url[1] == 'update' && count($url) == 4 && $method == 'POST') {
+            return (new Client)->update($url[2], $url[3]);
         }
         
-          if ($url[0] == 'clients' && $url[1] == 'update2' && count($url) == 3 && $method == 'POST') {
-            return (new Client)->update2($url[2]);
-        }
-
         if ($url[0] == 'clients' && $url[1] == 'delete' && count($url) == 3 && $method == 'POST') {
             return (new Client)->delete($url[2]);
         }

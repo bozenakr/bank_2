@@ -14,6 +14,8 @@ class Client {
         $pageTitle = 'Client | List';
         return App::view('client-list', compact('clients', 'pageTitle'));
     }
+
+    //parodo tuscia forma, kurioje isirasom nauja client
     public function create()
     {
         $pageTitle = 'Account | New';
@@ -21,7 +23,8 @@ class Client {
     }
     
     public function save()
-    //save funkcija perduos duomenis per body(post array)
+    //kuriam new client, negrazinam vaizdo o redirectinam
+    //save funkcija perduos duomenis per body(post array) POST
     //is Filereader imu create perduodu i masyva ir jis is posto ir bus tas masyvas
     //issaugom tai ka turim post array ir pereinam su tuo i sarasa
     //cia validacija ir compact-error
@@ -36,7 +39,8 @@ class Client {
         }
         else {
             (new FR('clients'))->create($_POST);
-                return App::redirect('clients');
+            $success = 'Operacija sėkminga';
+                return App::redirect('clients', compact('success'));
         }
     }
 
@@ -55,41 +59,30 @@ class Client {
         return App::view('client-withdraw', compact('pageTitle', 'client'));
     }
 
-    //deposit validacija
-    public function update($id)
+    // deposit withdraw validacija
+    public function update($id, $operation)
     {
-        if ((float) $_POST['naujaSuma'] > 0 && is_numeric($_POST['naujaSuma'])) {
-            (new FR('clients'))->update($id, $_POST);
-            return App::redirect('clients');
-        } else {
-            $pageTitle = 'Account | Deposit';
-            (new FR('clients'))->update($id, $_POST);
-            return App::redirect('clients/deposit' . '/' . $id);
-        }
-    }
-    
-    //withdraw validacija
-    public function update2($id)
-    {
-        if ((float) $_POST['naujaSuma'] > 0 && is_numeric($_POST['naujaSuma'])) {
-            (new FR('clients'))->update2($id, $_POST);
-            return App::redirect('clients');
-        } else {
-            $pageTitle = 'Account | Deposit';
-            (new FR('clients'))->update($id, $_POST);
-            return App::redirect('clients/withdraw' . '/' . $id);
-        }
+        $naujaSuma = $_POST['naujaSuma'];
+            if ($operation == 'deposit') {
+                (new FR('clients'))->update($operation, $id,  $_POST);
+                return App::redirect('clients');
+            } else if ($operation == 'withdraw') {
+                (new FR('clients'))->update($operation, $id, $_POST);
+                return App::redirect('clients');
+            }
     }
 
     // ???????patikrint!!!!
     public function delete($id)
-    { if ($userData['balance'] == 0.00) {
+    { 
+        if ($userData['balance'] == 0.00) {
         (new FR('clients'))->delete($id);
         return App::redirect('clients');
     } else {
         $pageTitle = 'Client | List';
-                $client = (new FR('clients'))->show($id);
-        return App::view('client-list', compact('clients', 'pageTitle'));
+        $success = 'Operacija sėkminga';
+            $client = (new FR('clients'))->show($id);
+        return App::view('client-list', compact('clients', 'pageTitle', 'success'));
     }
 
     }

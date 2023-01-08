@@ -5,9 +5,7 @@ interface DataBase
 {
     function create(array $userData) : void;
  
-    function update(int $userId, array $userData) : void;
-
-    function update2(int $userId, array $userData) : void;
+    function update(string $operation, int $userId, array $userData) : void;
  
     function delete(int $userId) : void;
  

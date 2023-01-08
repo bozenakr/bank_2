@@ -57,14 +57,13 @@ class FileReader implements DataBase {
     public function update (string $operation, int $userId, array $userData) : void
     {
         $userData['id'] = $userId;
-        $userData['naujaSuma'] = $naujaSuma;
         //einam per visa array, susiranda vieta kur user id sutampa su id ir ta vieta overwrite, kitus perkeliam kaip buvo
         foreach ($this->data as $index => $client){
             if ($userId == $client['id']) {
                 if ($operation == 'deposit') {
-                    $this->data [$index]['balance'] += (float) $naujaSuma;
+                    $this->data [$index]['balance'] += (float) $userData['naujaSuma'];
                 } elseif ($operation =='withdraw') {
-                    $this->data [$index]['balance'] -= (float) $naujaSuma;
+                    $this->data [$index]['balance'] -= (float) $userData['naujaSuma'];
                 }
             }
         }

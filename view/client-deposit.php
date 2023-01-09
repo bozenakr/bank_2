@@ -14,9 +14,5 @@
         </div>
         </form>
     </div>
-    <?php if (isset($errorDeposit)) : ?>
-    <div class="alert alert-danger" role="alert">
-        <?= $errorDeposit ?>
-    </div>
-    <?php endif ?>
+
 </div>

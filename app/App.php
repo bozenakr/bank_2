@@ -8,6 +8,7 @@ class App {
 
     public static function start()
     {
+        session_start();
         //request uri paverciam i masyva
         $url = explode('/', $_SERVER['REQUEST_URI']);
         array_shift($url);
